@@ -9,26 +9,22 @@ const createVideoContainer = (link: string) => {
   const title = document.createElement("h4");
   title.innerText = "video 1";
   const video = document.createElement("video");
-  video.src = "public\media\video1.mp4"
-  video.play()
+  video.src = link;
+  video.play();
 
   container.appendChild(video)
 }
 
-application.get("/", (req, res) => {
-  
-})
-
 videosApi
   .get("/", async (req, res, next) => {
     try {
-     createVideoContainer
+     createVideoContainer(videolink)
     }
     catch (error) {
       next(error);
     }
   })
 
-application.listen(ENV.PORT, async () => {
+application.listen(ENV.PORT, () => {
   console.log(`Server ready at port ${ENV.PORT}`);
 });
